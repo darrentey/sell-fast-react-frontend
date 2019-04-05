@@ -1,33 +1,54 @@
-.App {
-  text-align: center;
+:root {
+  --mainDark: #232528;
+  --mainYellow: #ffa400;
+  --lightBlue: #40aff0;
+  --mainBlue: #5f5ff3;
+  --mainWhite: #f5f5f5;
+  
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Oswald', sans-serif !important;
+  background: var(--mainWhite) !important;
+  color: var(--mainDark) !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.text-title {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.3rem;
+  text-transform: uppercase;
 }
 
-.App-link {
-  color: #61dafb;
+.text-blue {
+  color: var(--mainBlue);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text-bright {
+  color: var(--lightBlue);
+}
+
+.nav-button {
+  text-transform: capitalize;
+  font-size: 1.4em;
+  background: transparent;
+  border: 0.05em solid var(--lightBlue);
+  color: var(--lightBlue);
+  border-radius: 0.5em;
+  padding: 0.2em 0.5em;
+  cursor: pointer;
+  margin: 0.2em 0.5em 0.2em 0;
+  transition: all 0.5s ease-in-out;
+}
+.nav-button:hover {
+  background: var(--lightBlue);
+  color: var(--mainYellow);
+}
+.navbar {
+  background: var(--mainBlue);
+  color: var(--mainWhite);
+  font-size: 1.3em;
+}
+
+.success {
+  color: green;
 }
