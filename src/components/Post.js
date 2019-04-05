@@ -16,7 +16,10 @@ class Post extends Component {
         axios.post('http://127.0.0.1:5000/product', {
             title:this.state.title,
             description:this.state.description,
-            user_id:this.state.user_id
+            user_id:this.state.user_id            
+        },{
+            headers:{
+                'x-access-token':localStorage.getItem('session')}
         })
         .then(res => {
             this.setState({successMessage: res.data['message']});

@@ -23,17 +23,17 @@ class SignIn extends Component {
         })
         // store token in session
         .then(res => {
-            localStorage.setItem('session', JSON.stringify(res.data['token']));
-            localStorage.setItem('user_id', JSON.stringify(res.data['id']));
+            localStorage.setItem('session', res.data['token']);
+            localStorage.setItem('user_id', res.data['id']);
             this.setState({redirect: true});
         })
     }
     
 
     render() {
-
         if(this.state.redirect){
-            return (<Redirect to={'/homepage'}/>)
+            localStorage.setItem('reload_home', true);
+            return (<Redirect to={"/homepage"}/>)
         }
         return (
             <div className="container">

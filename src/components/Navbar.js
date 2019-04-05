@@ -5,16 +5,20 @@ import logo from "../logo.svg";
 var showHTML;
 
 class Navbar extends Component {
+
+    state = {
+        showHTML,
+        refreshLogin: false
+    }
+
     constructor(props) {
         super(props);
-        this.state = {
-            showHTML
-        }
         this.load();
     }
 
     load = () => {
-        const loggedin_HTML = [
+        const normal_HTML = [
+            
             <li className="nav-item">
                 <Link to="signin" className="nav-link">
                 Sign In
@@ -27,25 +31,35 @@ class Navbar extends Component {
                 </Link>
             </li>];
     
-            const normal_HTML = (
+            const loggedin_HTML = [
+            <li><Link to="/post" className="ml-auto">
+                <button className="nav-button">
+                    <span>
+                            Post
+                    </span>   
+                    </button>
+            </Link></li>,
             <li className="nav-item">
                 <a href="#" className="nav-link" onClick={this.logout}>
                 Logout
                 </a>
-            </li>);
+            </li>];
     
                 // to check whether there is token in session
             if(localStorage.getItem('session') != null){
-                showHTML = normal_HTML;
-            }else{
                 showHTML = loggedin_HTML;
+            }else{
+                showHTML = normal_HTML;
             }
+
     }
 
-    logout(e){
+    logout= (e) => {
         e.preventDefault();
         localStorage.removeItem('session');
-
+        localStorage.removeItem('user_id');
+        this.state.refreshLogin = true;
+        window.location.reload();
     }
 
     render() {
@@ -61,13 +75,6 @@ class Navbar extends Component {
                             Homepage
                         </Link>
                     </li>
-                        <Link to="/post" className="ml-auto">
-                            <button className="nav-button">
-                                <span>
-                                     Post
-                                </span>   
-                            </button>
-                        </Link>
                         {showHTML}
                 </ul>
             </nav>
