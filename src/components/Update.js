@@ -15,7 +15,9 @@ class Post extends Component {
         e.preventDefault();
         axios.put('https://flask-backend-sellfast.herokuapp.com/product/'+this.state.product_id, {
             title:this.state.title,
-            description:this.state.description
+            description:this.state.description,
+            headers:{
+                'x-access-token':localStorage.getItem('session')}
         }).then(res => {
             //successful
             this.setState({successMessage: res.data['message']});    
