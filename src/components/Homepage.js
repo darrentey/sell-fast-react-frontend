@@ -83,30 +83,30 @@ class Homepage extends Component {
                 }
     
             });
+            if (localStorage.getItem('user_id')){
+                return (
+                    <div className="container">
+                        {products}
+                        <Link to={'/update'}>
+                            <button>Edit</button>
+                        </Link>
+                    </div>
+                    );
+                
+            }
+            else{
+                return (
+                <div className="container">
+                    {products}
+                </div>
+                );
+            }
         }else{
             return (
                 <span>No products</span>
             )
         }
         
-        if (localStorage.getItem('user_id')){
-            return (
-                <div className="container">
-                    {products}
-                    <Link to={'/update'}>
-                        <button>Edit</button>
-                    </Link>
-                </div>
-                );
-            
-        }
-        else{
-            return (
-            <div className="container">
-                {products}
-            </div>
-            );
-        }
     }
     
 }
