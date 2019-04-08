@@ -83,6 +83,10 @@ class Homepage extends Component {
                 }
     
             });
+        }else{
+            return (
+                <span>No products</span>
+            )
         }
         
         if (localStorage.getItem('user_id')){
