@@ -44,7 +44,7 @@ class Homepage extends Component {
             localStorage.removeItem('reload_home');
             window.location.reload();
         }
-        if (this.state.products.length != 0){
+        if (this.state.products){
             let products = this.state.products.map((product) => {
 
                 if (product.user_id == localStorage.getItem('user_id')){

@@ -8,15 +8,13 @@ class Post extends Component {
             successMessage: '',
             title:'',
             description:'',
-            user_id:'',
     }}
 
     post = e => {
         e.preventDefault();
         axios.post('https://flask-backend-sellfast.herokuapp.com/product', {
             title:this.state.title,
-            description:this.state.description,
-            user_id:this.state.user_id            
+            description:this.state.description,           
         },{
             headers:{
                 'x-access-token':localStorage.getItem('session')}
@@ -47,14 +45,6 @@ class Post extends Component {
                             name="description"
                             placeholder="description"
                             onChange={event => this.setState({description:event.target.value})}
-                            required
-                        />
-                        <input 
-                            className="form-control"
-                            type="text"
-                            name="user id"
-                            placeholder="user id"
-                            onChange={event => this.setState({user_id:event.target.value})}
                             required
                         />
                 
