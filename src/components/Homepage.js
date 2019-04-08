@@ -17,7 +17,7 @@ class Homepage extends Component {
         }
 
     componentDidMount(){
-        axios.get('http://localhost:5000/product').then((response) => {
+        axios.get('https://flask-backend-sellfast.herokuapp.com/product').then((response) => {
             console.log(response.data)
             this.setState({
                 products: response.data.products
@@ -27,7 +27,7 @@ class Homepage extends Component {
 
     delete = (e, id) => {
         e.preventDefault();
-        axios.delete('http://127.0.0.1:5000/product/'+id, {
+        axios.delete('https://flask-backend-sellfast.herokuapp.com/product/'+id, {
             product_id: id,
             headers:{
                 'x-access-token':localStorage.getItem('session')}
@@ -60,9 +60,7 @@ class Homepage extends Component {
                         <CardLink>{product.date_posted}</CardLink>
                         </CardBody>
                         
-                        <Link to={'/update'}>
-                        <button>Edit</button>
-                        </Link>
+                        
                         <button className="btn btn-danger" type="button" onClick={(e) => this.delete(e, product.id)}>Delete</button>
                     </Card>
                 )
@@ -84,18 +82,26 @@ class Homepage extends Component {
             }
 
         });
-
-    return (
-        <div className="container">
-            {products}
-            <label>
-                    Product:
-                    <input tpye="number" name="id" onChange={event => this.setState({product_id:event.target.value})}></input>
-                    <button className="btn btn-danger" type="button" onClick={(e) => this.delete(e, this.state.product_id)}>Delete</button>
-            </label>
-        </div>
-        );
+        if (localStorage.getItem('user_id')){
+            return (
+                <div className="container">
+                    {products}
+                    <Link to={'/update'}>
+                        <button>Edit</button>
+                    </Link>
+                </div>
+                );
+            
+        }
+        else{
+            return (
+            <div className="container">
+                {products}
+            </div>
+            );
+        }
     }
+    
 }
 
 export default Homepage;

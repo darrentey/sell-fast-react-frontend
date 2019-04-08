@@ -13,7 +13,7 @@ class Post extends Component {
 
     update = e => {
         e.preventDefault();
-        axios.put('http://127.0.0.1:5000/product/'+this.state.product_id, {
+        axios.put('https://flask-backend-sellfast.herokuapp.com/product/'+this.state.product_id, {
             title:this.state.title,
             description:this.state.description
         }).then(res => {

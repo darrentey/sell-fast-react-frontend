@@ -14,7 +14,7 @@ class SignIn extends Component {
 
     signIn = e => {
         e.preventDefault();
-        axios.get('http://127.0.0.1:5000/login', {
+        axios.get('https://flask-backend-sellfast.herokuapp.com/login', {
             auth: {
                 username: this.state.name,
                 password: this.state.password

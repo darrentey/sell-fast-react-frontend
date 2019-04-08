@@ -14,7 +14,7 @@ class SignUp extends Component {
 
     signUp = e => {
         e.preventDefault();
-        axios.post('http://127.0.0.1:5000/user', {
+        axios.post('https://flask-backend-sellfast.herokuapp.com/user', {
             name: this.state.name,
             password: this.state.password
         }).then(res => {

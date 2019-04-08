@@ -13,7 +13,7 @@ class Post extends Component {
 
     post = e => {
         e.preventDefault();
-        axios.post('http://127.0.0.1:5000/product', {
+        axios.post('https://flask-backend-sellfast.herokuapp.com/product', {
             title:this.state.title,
             description:this.state.description,
             user_id:this.state.user_id            
