@@ -8,12 +8,14 @@ class SignIn extends Component {
         this.state = {
             name:'',
             password:'',
-            redirect: false
+            redirect: false,
+            failedMessage:''
         }
     }
 
     signIn = e => {
         e.preventDefault();
+        this.setState({failedMessage: ''});
         axios.get('https://flask-backend-sellfast.herokuapp.com/login', {
             auth: {
                 username: this.state.name,
@@ -23,10 +25,19 @@ class SignIn extends Component {
         })
         // store token in session
         .then(res => {
-            localStorage.setItem('session', res.data['token']);
-            localStorage.setItem('user_id', res.data['id']);
-            this.setState({redirect: true});
-        })
+            if (res.data['token']){
+                localStorage.setItem('session', res.data['token']);
+                localStorage.setItem('user_id', res.data['id']);
+                this.setState({redirect: true});
+            }else{
+                if(res.data['message']){
+                    this.setState({failedMessage: res.data['message']});
+                }
+            }
+        }).catch((err) => {
+            this.setState({failedMessage: err.response.data});
+        }
+        )
     }
     
 
@@ -38,6 +49,7 @@ class SignIn extends Component {
         return (
             <div className="container">
                 <h2>Sign In</h2>
+                <span className="failed">{this.state.failedMessage}</span>
                 <div className="form-group">
                     <input 
                         className="form-control"

@@ -18,7 +18,6 @@ class Homepage extends Component {
 
     componentDidMount(){
         axios.get('https://flask-backend-sellfast.herokuapp.com/product').then((response) => {
-            console.log(response.data)
             this.setState({
                 products: response.data.products
             })

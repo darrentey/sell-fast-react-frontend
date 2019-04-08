@@ -53,6 +53,10 @@ body {
   color: green;
 }
 
+.failed {
+  color:red;
+}
+
 .align-items-center{
   margin-left: auto;
   margin-right: auto;
